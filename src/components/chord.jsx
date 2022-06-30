@@ -1,18 +1,20 @@
 import React, { Component } from "react";
+import Finger from "./finger";
 
 class Chord extends Component {
   state = {
     height: 256,
-    width: 256,
+    width: 128,
     margin: 28,
     gap: 40,
   };
+
   render() {
     return (
       <svg
         style={{ background: "white" }}
-        height="512"
-        viewBox={`0 0 ${this.state.height} ${this.state.width}`}
+        height="200"
+        viewBox={`0 0 ${this.state.width} ${this.state.height}`}
         xmlns="http://www.w3.org/2000/svg"
       >
         <rect
@@ -32,24 +34,6 @@ class Chord extends Component {
           stroke="black"
           strokeWidth="2"
         />
-        <circle
-          cx={this.state.width / 2}
-          cy={this.state.margin}
-          r="20"
-          fill="white"
-          strokeWidth="4"
-          stroke="black"
-        />
-        <text
-          x={this.state.width / 2}
-          y={this.state.margin}
-          textAnchor="middle"
-          dominantBaseline="middle"
-          fontSize="24"
-        >
-          {" "}
-          2{" "}
-        </text>
         <line
           x1="0"
           y1={this.state.margin + this.state.gap}
@@ -90,6 +74,17 @@ class Chord extends Component {
           stroke="black"
           strokeWidth="4"
         />
+
+        {this.props.strings.map((string) => {
+          return (
+            <Finger
+              key={string.string}
+              x={this.state.width / 2}
+              y={this.state.margin + this.state.gap * string.string}
+              number={string.finger}
+            />
+          );
+        })}
       </svg>
     );
   }
