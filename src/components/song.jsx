@@ -7,6 +7,7 @@ class Song extends Component {
       [
         { string: 0, finger: 0 },
         { string: 2, finger: 1 },
+        { string: 4, finger: 2 },
       ],
     ],
   };
