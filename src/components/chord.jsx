@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Finger from "./finger";
+import String from "./string";
 
 class Chord extends Component {
   state = {
@@ -7,6 +8,18 @@ class Chord extends Component {
     width: 128,
     margin: 28,
     gap: 40,
+    strings: [
+      { name: "E", thick: 2 },
+      { name: "B", thick: 2 },
+      { name: "G", thick: 3 },
+      { name: "D", thick: 3 },
+      { name: "A", thick: 4 },
+      { name: "E", thick: 4 },
+    ],
+  };
+
+  stringClicked = () => {
+    console.log("clicked");
   };
 
   render() {
@@ -26,54 +39,17 @@ class Chord extends Component {
           strokeWidth="2"
           stroke="black"
         />
-        <line
-          x1="0"
-          y1={this.state.margin}
-          x2={this.state.width}
-          y2={this.state.margin}
-          stroke="black"
-          strokeWidth="2"
-        />
-        <line
-          x1="0"
-          y1={this.state.margin + this.state.gap}
-          x2={this.state.width}
-          y2={this.state.margin + this.state.gap}
-          stroke="black"
-          strokeWidth="2"
-        />
-        <line
-          x1="0"
-          y1={this.state.margin + this.state.gap * 2}
-          x2={this.state.width}
-          y2={this.state.margin + this.state.gap * 2}
-          stroke="black"
-          strokeWidth="3"
-        />
-        <line
-          x1="0"
-          y1={this.state.margin + this.state.gap * 3}
-          x2={this.state.width}
-          y2={this.state.margin + this.state.gap * 3}
-          stroke="black"
-          strokeWidth="3"
-        />
-        <line
-          x1="0"
-          y1={this.state.margin + this.state.gap * 4}
-          x2={this.state.width}
-          y2={this.state.margin + this.state.gap * 4}
-          stroke="black"
-          strokeWidth="4"
-        />
-        <line
-          x1="0"
-          y1={this.state.margin + this.state.gap * 5}
-          x2={this.state.width}
-          y2={this.state.margin + this.state.gap * 5}
-          stroke="black"
-          strokeWidth="4"
-        />
+        {this.state.strings.map((string, index) => {
+          return (
+            <String
+              key={index}
+              y={this.state.margin + this.state.gap * index}
+              gap={this.state.gap}
+              width={this.state.width}
+              thick={string.thick}
+            />
+          );
+        })}
 
         {this.props.strings.map((string) => {
           return (
