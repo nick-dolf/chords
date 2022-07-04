@@ -18,6 +18,7 @@ const String = (props) => {
         y2={props.y}
         stroke="transparent"
         strokeWidth={props.gap}
+        onClick={props.increaseFret}
       />
       <line
         x1={props.width / 2}
@@ -26,6 +27,7 @@ const String = (props) => {
         y2={props.y}
         stroke="transparent"
         strokeWidth={props.gap}
+        onClick={() => props.decreaseFret(props.num)}
       />
     </React.Fragment>
   );

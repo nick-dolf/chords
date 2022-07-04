@@ -18,8 +18,11 @@ class Chord extends Component {
     ],
   };
 
-  stringClicked = () => {
-    console.log("clicked");
+  increaseFret = (num) => {
+    console.log("increase", num);
+  };
+  decreaseFret = (num) => {
+    console.log("decrease", num);
   };
 
   render() {
@@ -39,6 +42,7 @@ class Chord extends Component {
           strokeWidth="2"
           stroke="black"
         />
+
         {this.state.strings.map((string, index) => {
           return (
             <String
@@ -47,6 +51,12 @@ class Chord extends Component {
               gap={this.state.gap}
               width={this.state.width}
               thick={string.thick}
+              increaseFret={() =>
+                this.props.increaseFret(this.props.chord_num, index)
+              }
+              decreaseFret={() =>
+                this.props.decreaseFret(this.props.chord_num, index)
+              }
             />
           );
         })}
